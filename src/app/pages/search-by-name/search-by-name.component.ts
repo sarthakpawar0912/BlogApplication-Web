@@ -9,14 +9,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './search-by-name.component.css'
 })
 export class SearchByNameComponent {
-
-
   result:any=[];
   name:any=" ";
 
-
   constructor(private postService:PostService,
     private snackBar:MatSnackBar){}
+
 
     searchByName(){
       this.postService.searchByName(this.name).subscribe(res=>{
@@ -27,15 +25,5 @@ export class SearchByNameComponent {
       })
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    
 }

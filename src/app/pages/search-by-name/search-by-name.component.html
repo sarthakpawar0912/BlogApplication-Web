@@ -8,6 +8,7 @@
   </mat-form-field>
 </div>
 
+
 <!-- Empty State Message -->
 <div class="empty" *ngIf="result.length === 0">
   <mat-icon class="icon">no_sim</mat-icon>
@@ -15,9 +16,11 @@
   <span>Nothing to see here.</span>
 </div>
 
+
 <!-- Search Results Container -->
 <div class="card-container">
   <ng-container *ngFor="let item of result; let i = index">
+   
     <!-- Start a new row every 2 posts -->
     <div class="post-row" *ngIf="i % 2 === 0">
       <mat-card class="post-card">
@@ -29,11 +32,13 @@
           </mat-card-subtitle>
         </mat-card-header>
 
+
         <mat-grid-list cols="5" class="post-grid-content">
           <!-- Image Container -->
           <mat-grid-tile [colspan]="2" [rowspan]="1" class="image-container">
             <img mat-card-image [src]="result[i]?.img" class="post-img" alt="Post Image" />
           </mat-grid-tile>
+
 
           <!-- Content Container -->
           <mat-grid-tile [colspan]="3" [rowspan]="1" class="content-container">
@@ -59,6 +64,7 @@
         </mat-card-actions>
       </mat-card>
 
+
       <!-- Second Post in the Row (If Exists) -->
       <mat-card class="post-card" *ngIf="result[i + 1]">
         <mat-card-header>
@@ -69,11 +75,13 @@
           </mat-card-subtitle>
         </mat-card-header>
 
+
         <mat-grid-list cols="5" class="post-grid-content">
           <!-- Image Container -->
           <mat-grid-tile [colspan]="2" [rowspan]="1" class="image-container">
             <img mat-card-image [src]="result[i + 1]?.img" class="post-img" alt="Post Image" />
           </mat-grid-tile>
+
 
           <!-- Content Container -->
           <mat-grid-tile [colspan]="3" [rowspan]="1" class="content-container">
@@ -82,8 +90,8 @@
             </mat-card-content>
           </mat-grid-tile>
         </mat-grid-list>
-
         <hr class="divider-line" />
+
 
         <!-- Fixed Action Buttons -->
         <mat-card-actions class="action-buttons">

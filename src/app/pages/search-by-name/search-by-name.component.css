@@ -88,6 +88,7 @@
   align-items: center;
 }
 
+
 .content-box {
   height: 120px; /* Fixed height for consistency */
   overflow: hidden;
@@ -97,6 +98,7 @@
   padding: 5px;
 }
 
+
 /* Divider Line */
 .divider-line {
   border: 0;
@@ -104,6 +106,7 @@
   background: #ccc;
   margin: 10px 0;
 }
+
 
 /* Fixed Action Buttons */
 .action-buttons {
@@ -113,16 +116,19 @@
   padding: 10px 0;
 }
 
+
 .action-buttons button {
   min-width: 100px;
   text-align: center;
 }
+
 
 /* 🏷️ Card Header */
 mat-card-header {
   display: flex;
   align-items: center;
 }
+
 
 /* 🟢 Avatar Image */
 .example-header-image {
@@ -131,22 +137,22 @@ mat-card-header {
   border-radius: 50%;
   background: #ddd;
 }
-
 /* 📱 Responsive Adjustments */
 @media (max-width: 1024px) {
   .post-row {
     flex-direction: column;
   }
 }
-
 @media (max-width: 768px) {
   .card-container {
     padding: 0 10px;
   }
 
+
   .post-img {
     height: 150px;
   }
+
 
   .content-box {
     height: 100px;

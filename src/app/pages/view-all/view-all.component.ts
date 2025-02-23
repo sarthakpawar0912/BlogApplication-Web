@@ -10,10 +10,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./view-all.component.css']
 })
 export class ViewAllComponent implements OnInit {
-
   allPosts: any[] = [];
   commentForm: FormGroup;
-  selectedPostId: number | null = null;  // ✅ Track selected post for showing comments
+  selectedPostId: number | null = null;  
+
 
   constructor(
     private postService: PostService, 
@@ -26,9 +26,11 @@ export class ViewAllComponent implements OnInit {
     });
   }
 
+
   ngOnInit(): void {
     this.getAllPosts();
   }
+
 
   getAllPosts(): void {
     this.postService.getAllPosts().subscribe({
@@ -46,12 +48,13 @@ export class ViewAllComponent implements OnInit {
     });
   }
 
-  // ✅ Toggle comment box for a post
+
   toggleCommentBox(postId: number): void {
     this.selectedPostId = this.selectedPostId === postId ? null : postId;
   }
 
-  // ✅ Submit comment
+
+
   submitComment(postId: number): void {
     if (this.commentForm.invalid) {
       return;
@@ -70,7 +73,6 @@ export class ViewAllComponent implements OnInit {
       duration: 3000,
       panelClass: ['snackbar-success']
     });
-
     this.commentForm.reset();
   }
 }

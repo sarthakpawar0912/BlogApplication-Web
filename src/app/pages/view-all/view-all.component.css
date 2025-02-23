@@ -62,8 +62,7 @@
     white-space: normal;
     line-height: 1.5;
     padding: 5px;
-  }
-  
+  }  
   /* Divider Line */
   .divider-line {
     border: 0;
@@ -71,7 +70,6 @@
     background: #ccc;
     margin: 10px 0;
   }
-  
   /* Fixed Action Buttons */
   .action-buttons {
     display: flex;
@@ -79,28 +77,25 @@
     align-items: center;
     padding: 10px 0;
   }
-  
   .action-buttons button {
     min-width: 100px;
     text-align: center;
   }
-  
+ 
   /* Responsive Design */
   @media (max-width: 1024px) {
     .post-row {
       flex-direction: column;
     }
   }
-  
+
   @media (max-width: 768px) {
     .card-container {
       padding: 0 10px;
     }
-  
     .post-img {
       height: 150px;
     }
-  
     .content-box {
       height: 100px;
     }

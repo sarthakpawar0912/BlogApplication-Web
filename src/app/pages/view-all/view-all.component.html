@@ -12,11 +12,13 @@
             </mat-card-subtitle>
           </mat-card-header>
 
+          
           <mat-grid-list cols="5" class="post-grid-content">
             <!-- Image Container -->
             <mat-grid-tile [colspan]="2" [rowspan]="1" class="image-container">
               <img mat-card-image [src]="allPosts[i]?.img" class="post-img" alt="Post Image" />
             </mat-grid-tile>
+
 
             <!-- Content Container -->
             <mat-grid-tile [colspan]="3" [rowspan]="1" class="content-container">
@@ -27,6 +29,7 @@
           </mat-grid-list>
 
           <hr class="divider-line" />
+
 
           <!-- Fixed Action Buttons -->
           <mat-card-actions class="action-buttons">
@@ -42,6 +45,7 @@
           </mat-card-actions>
         </mat-card>
 
+        
         <!-- Second Post in the Row (If Exists) -->
         <mat-card class="post-card" *ngIf="allPosts[i + 1]">
           <mat-card-header>
@@ -52,11 +56,13 @@
             </mat-card-subtitle>
           </mat-card-header>
 
+
           <mat-grid-list cols="5" class="post-grid-content">
             <!-- Image Container -->
             <mat-grid-tile [colspan]="2" [rowspan]="1" class="image-container">
               <img mat-card-image [src]="allPosts[i + 1]?.img" class="post-img" alt="Post Image" />
             </mat-grid-tile>
+
 
             <!-- Content Container -->
             <mat-grid-tile [colspan]="3" [rowspan]="1" class="content-container">
@@ -65,8 +71,8 @@
               </mat-card-content>
             </mat-grid-tile>
           </mat-grid-list>
-
           <hr class="divider-line" />
+
 
           <!-- Fixed Action Buttons -->
           <mat-card-actions class="action-buttons">

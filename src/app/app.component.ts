@@ -10,27 +10,33 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Blog_Application'; // ✅ Add this property
 
+
   constructor(private router: Router) {}
+
 
   // ✅ Navigate to Create Post Page
   navigateToCreatePost() {
     this.router.navigate(['/create-post']);
   }
 
+
   // ✅ Navigate to View All Posts Page
   navigateToGetAllPosts() {
     this.router.navigate(['/view-all']);
   }
+
 
   // ✅ Navigate to Search by Name Page
   navigateToSearchByPost() {
     this.router.navigate(['/search-by-name']);
   }
 
+
   // ✅ Navigate to Most Liked Posts Page
   showMostLikedPosts() {
     this.router.navigate(['/most-liked-posts']);
   }
+  
   
 
   // ✅ Share Website Link

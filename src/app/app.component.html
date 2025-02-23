@@ -1,28 +1,35 @@
 <mat-toolbar class="custom-toolbar">
+
   <!-- App Title -->
   <span class="app-title">My App</span>
 
+
   <!-- Spacer to Push Items to Right -->
   <span class="spacer"></span>
+
 
   <!-- Create New Post Button -->
   <button mat-raised-button color="primary" (click)="navigateToCreatePost()">
     Create New Post
   </button>
 
+
   <button mat-raised-button color="primary" (click)="navigateToGetAllPosts()">
     View All Posts
   </button>
 
+
   <button mat-raised-button color="primary" (click)="navigateToSearchByPost()">
     Search
   </button>
+
 
   <!-- Share Icon (Share Website Link) -->
   <button mat-icon-button class="icon-button" aria-label="Share" (click)="shareWebsite()">
     <mat-icon class="share">share</mat-icon>
   </button>
 </mat-toolbar>
+
 
 <!-- ✅ Router Outlet to Load Pages -->
 <router-outlet></router-outlet>

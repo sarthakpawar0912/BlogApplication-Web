@@ -80,6 +80,7 @@ button[mat-raised-button]:hover {
     color: #ffffff;
 }
 
+
 /* 🔄 Responsive Design */
 @media (max-width: 768px) {
     .custom-toolbar {
@@ -88,6 +89,7 @@ button[mat-raised-button]:hover {
         justify-content: center;
     }
 
+
     .app-title {
         font-size: 18px;
         width: 100%;
@@ -95,11 +97,13 @@ button[mat-raised-button]:hover {
         margin-bottom: 10px;
     }
 
+
     button[mat-raised-button] {
         font-size: 14px;
         padding: 8px 12px;
         margin: 5px 0;
     }
+
 
     .icon-button {
         padding: 8px;

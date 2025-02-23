@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PostService } from '../../service/post.service';
-
 @Component({
   selector: 'app-create-post',
   standalone:false,
@@ -14,12 +13,14 @@ export class CreatePostComponent implements OnInit {
   postForm!: FormGroup; 
   tags: string[] = []; 
 
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private snackBar: MatSnackBar,
     private postService: PostService
   ) {}
+
 
   ngOnInit() {
     this.postForm = this.fb.group({
@@ -30,6 +31,7 @@ export class CreatePostComponent implements OnInit {
     });
   }
 
+
   add(event: any) {
     const value = (event.value || '').trim();
     if (value) {
@@ -38,12 +40,14 @@ export class CreatePostComponent implements OnInit {
     event.chipInput!.clear(); 
   }
 
+
   remove(tag: string) {
     const index = this.tags.indexOf(tag);
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
   }
+
 
   createPost(){
     const data = { ...this.postForm.value, tags: this.tags };
@@ -55,4 +59,6 @@ export class CreatePostComponent implements OnInit {
       this.snackBar.open("Something went wrong!", "Ok", { duration: 3000 });
     });
   }
+
+  
 }

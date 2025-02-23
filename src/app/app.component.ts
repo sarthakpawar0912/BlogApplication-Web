@@ -8,41 +8,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Blog_Application'; // ✅ Add this property
-
+  title = 'Blog_Application';
 
   constructor(private router: Router) {}
 
 
-  // ✅ Navigate to Create Post Page
   navigateToCreatePost() {
     this.router.navigate(['/create-post']);
   }
 
 
-  // ✅ Navigate to View All Posts Page
   navigateToGetAllPosts() {
     this.router.navigate(['/view-all']);
   }
 
 
-  // ✅ Navigate to Search by Name Page
   navigateToSearchByPost() {
     this.router.navigate(['/search-by-name']);
   }
 
 
-  // ✅ Navigate to Most Liked Posts Page
   showMostLikedPosts() {
     this.router.navigate(['/most-liked-posts']);
   }
   
-  
 
-  // ✅ Share Website Link
   shareWebsite() {
     const websiteUrl = window.location.href; // Gets the current page URL
-
     if (navigator.share) {
       // Native Web Share API
       navigator.share({
@@ -56,4 +48,5 @@ export class AppComponent {
       alert('Link copied to clipboard! Share it with others.');
     }
   }
+  
 }

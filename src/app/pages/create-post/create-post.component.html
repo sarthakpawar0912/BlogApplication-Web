@@ -1,7 +1,6 @@
 <mat-card class="center-card">
   <mat-card-content>
     <form [formGroup]="postForm">
-
       <!-- Name Field -->
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
@@ -13,7 +12,6 @@
         <mat-label>Image URL</mat-label>
         <input matInput formControlName="img">
       </mat-form-field>
-
       <!-- Content Field -->
       <mat-form-field appearance="fill">
         <mat-label>Content</mat-label>
@@ -25,7 +23,6 @@
         <mat-label>Posted By</mat-label>
         <input matInput formControlName="postedBy">
       </mat-form-field>
-
       <!-- Tags Input -->
       <mat-form-field appearance="fill">
         <mat-label>Tags</mat-label>
@@ -41,11 +38,9 @@
             (matChipInputTokenEnd)="add($event)">
         </mat-chip-grid>
       </mat-form-field>
-
       <!-- Submit Button -->
       <button mat-raised-button color="primary" style="float:right;"
         [disabled]="!postForm.valid" (click)="createPost()">Create New Post</button>
-
     </form>
   </mat-card-content>
 </mat-card>

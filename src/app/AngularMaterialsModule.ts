@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   exports: [
     BrowserAnimationsModule,
@@ -45,6 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatGridListModule,
     MatChipsModule,
     MatChipsModule 
+
   ]
 })
 export class AngularMaterialModule { }

@@ -1,0 +1,87 @@
+<div class="card-container">
+  <div class="post-grid">
+    <ng-container *ngFor="let item of allPosts; let i = index">
+      <!-- Start a new row every 2 posts -->
+      <div class="post-row" *ngIf="i % 2 === 0">
+        <mat-card class="post-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ allPosts[i]?.name }}</mat-card-title>
+            <mat-card-subtitle>
+              Posted by: {{ allPosts[i]?.postedBy }} | Posted On: {{ allPosts[i]?.date | date: "medium" }}
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-grid-list cols="5" class="post-grid-content">
+            <!-- Image Container -->
+            <mat-grid-tile [colspan]="2" [rowspan]="1" class="image-container">
+              <img mat-card-image [src]="allPosts[i]?.img" class="post-img" alt="Post Image" />
+            </mat-grid-tile>
+
+            <!-- Content Container -->
+            <mat-grid-tile [colspan]="3" [rowspan]="1" class="content-container">
+              <mat-card-content class="content-box">
+                {{ allPosts[i]?.content.length > 600 ? allPosts[i]?.content.substr(0, 600) + '...' : allPosts[i]?.content }}
+              </mat-card-content>
+            </mat-grid-tile>
+          </mat-grid-list>
+
+          <hr class="divider-line" />
+
+          <!-- Fixed Action Buttons -->
+          <mat-card-actions class="action-buttons">
+            <button mat-raised-button color="primary">
+              {{ allPosts[i]?.likeCount }} <mat-icon>favorite</mat-icon>
+            </button>
+            <button mat-raised-button color="primary">
+              {{ allPosts[i]?.viewCount }} <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" [routerLink]="['/view-post', allPosts[i]?.id]">
+              View Post
+            </button>
+          </mat-card-actions>
+        </mat-card>
+
+        <!-- Second Post in the Row (If Exists) -->
+        <mat-card class="post-card" *ngIf="allPosts[i + 1]">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ allPosts[i + 1]?.name }}</mat-card-title>
+            <mat-card-subtitle>
+              Posted by: {{ allPosts[i + 1]?.postedBy }} | Posted On: {{ allPosts[i + 1]?.date | date: "medium" }}
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-grid-list cols="5" class="post-grid-content">
+            <!-- Image Container -->
+            <mat-grid-tile [colspan]="2" [rowspan]="1" class="image-container">
+              <img mat-card-image [src]="allPosts[i + 1]?.img" class="post-img" alt="Post Image" />
+            </mat-grid-tile>
+
+            <!-- Content Container -->
+            <mat-grid-tile [colspan]="3" [rowspan]="1" class="content-container">
+              <mat-card-content class="content-box">
+                {{ allPosts[i + 1]?.content.length > 600 ? allPosts[i + 1]?.content.substr(0, 600) + '...' : allPosts[i + 1]?.content }}
+              </mat-card-content>
+            </mat-grid-tile>
+          </mat-grid-list>
+
+          <hr class="divider-line" />
+
+          <!-- Fixed Action Buttons -->
+          <mat-card-actions class="action-buttons">
+            <button mat-raised-button color="primary">
+              {{ allPosts[i + 1]?.likeCount }} <mat-icon>favorite</mat-icon>
+            </button>
+            <button mat-raised-button color="primary">
+              {{ allPosts[i + 1]?.viewCount }} <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" [routerLink]="['/view-post', allPosts[i + 1]?.id]">
+              View Post
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </ng-container>
+  </div>
+</div>

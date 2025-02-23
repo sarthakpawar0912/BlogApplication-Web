@@ -1,0 +1,81 @@
+<div class="card-container">
+  
+  <!-- Post Card -->
+  <mat-card class="post-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ postData.name }}</mat-card-title>
+      <mat-card-subtitle>
+        Posted by: {{ postData.postedBy }} | {{ postData.date | date: 'medium' }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- Post Image (Resized) -->
+    <div class="image-container">
+      <img mat-card-image [src]="postData.img" class="post-img" alt="Post Image" />
+    </div>
+
+    <mat-card-content>
+      <p>{{ postData.content }}</p>
+    </mat-card-content>
+
+    <!-- Tags Section -->
+    <div class="tags-container">
+      <span class="tag" *ngFor="let tag of postData.tags">{{ tag }}</span>
+    </div>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="likepost()">
+        {{ postData.likeCount }} <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-raised-button color="primary">
+        {{ postData.viewCount }} <mat-icon>remove_red_eye</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Publish Comment Section -->
+  <mat-card class="comment-card">
+    <mat-card-content>
+      <h4>Leave a Comment</h4>
+      <form [formGroup]="commentForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Your Name</mat-label>
+          <input matInput formControlName="postedBy">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your comment</mat-label>
+          <textarea matInput formControlName="content"></textarea>
+        </mat-form-field>
+
+        <button 
+          mat-raised-button 
+          color="primary" 
+          class="publish-btn"
+          (click)="publishComment()" 
+          [disabled]="!commentForm.valid">
+          Publish
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Comments List Section -->
+  <div class="comments-section">
+    <h4>Comments</h4>
+  
+    <mat-card *ngFor="let comment of comments">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ comment.postedBy }}</mat-card-title>
+        <mat-card-subtitle>{{ comment.createdAt | date: 'medium' }}</mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+        {{ comment.content }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

@@ -1,0 +1,131 @@
+/* Container for the entire post section */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Post Card Styling */
+.post-card {
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+/* Image Container (Resized for Responsive) */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Image Styling (Responsive) */
+.post-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Tags Section */
+.tags-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Individual Tag Styling */
+.tag {
+  background-color: #6200ea;
+  color: white;
+  font-size: 14px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Comment Card */
+.comment-card {
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+/* Comment Avatar */
+.example-header-image {
+  background-color: #ccc;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Form Fields */
+mat-form-field {
+  width: 100%;
+}
+
+/* Publish Button */
+.publish-btn {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #6200ea;
+  color: white;
+  font-weight: bold;
+}
+
+/* Action Buttons */
+mat-card-actions {
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Like & View Button */
+mat-card-actions button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Comments List */
+.comments-section {
+  margin-top: 10px;
+}
+
+h4 {
+  color: #333;
+  font-size: 18px;
+}
+
+/* Comment Card Styling */
+mat-card {
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .post-card, .comment-card {
+    padding: 10px;
+  }
+
+  .post-img {
+    max-width: 90%;
+    height: auto;
+  }
+}

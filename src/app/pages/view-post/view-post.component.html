@@ -1,5 +1,6 @@
 <div class="card-container">
   
+  
   <!-- Post Card -->
   <mat-card class="post-card">
     <mat-card-header>
@@ -10,6 +11,7 @@
       </mat-card-subtitle>
     </mat-card-header>
 
+
     <!-- Post Image (Resized) -->
     <div class="image-container">
       <img mat-card-image [src]="postData.img" class="post-img" alt="Post Image" />
@@ -19,10 +21,12 @@
       <p>{{ postData.content }}</p>
     </mat-card-content>
 
+    
     <!-- Tags Section -->
     <div class="tags-container">
       <span class="tag" *ngFor="let tag of postData.tags">{{ tag }}</span>
     </div>
+
 
     <mat-card-actions>
       <button mat-raised-button color="primary" (click)="likepost()">
@@ -33,6 +37,7 @@
       </button>
     </mat-card-actions>
   </mat-card>
+
 
   <!-- Publish Comment Section -->
   <mat-card class="comment-card">
@@ -49,6 +54,7 @@
           <textarea matInput formControlName="content"></textarea>
         </mat-form-field>
 
+
         <button 
           mat-raised-button 
           color="primary" 
@@ -61,10 +67,12 @@
     </mat-card-content>
   </mat-card>
 
+
   <!-- Comments List Section -->
   <div class="comments-section">
     <h4>Comments</h4>
   
+
     <mat-card *ngFor="let comment of comments">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -72,6 +80,7 @@
         <mat-card-subtitle>{{ comment.createdAt | date: 'medium' }}</mat-card-subtitle>
       </mat-card-header>
   
+
       <mat-card-content>
         {{ comment.content }}
       </mat-card-content>

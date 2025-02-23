@@ -11,11 +11,14 @@ import { CommentService } from '../../service/comment.service';
   templateUrl: './view-post.component.html',
   styleUrls: ['./view-post.component.css'],
 })
+
 export class ViewPostComponent {
+
   postId!: number;
   commentForm!: FormGroup;
   postData: any;
   comments: any = [];
+
 
   constructor(
     private postService: PostService,
@@ -24,6 +27,7 @@ export class ViewPostComponent {
     private fb: FormBuilder,
     private commentService: CommentService
   ) {}
+
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -40,12 +44,12 @@ export class ViewPostComponent {
     });
   }
 
+
   publishComment() {
     if (this.commentForm.invalid) {
       this.matSnackBar.open('Please fill in all required fields!', 'Ok');
       return;
     }
-
     const postedBy = this.commentForm.get('postedBy')?.value?.trim();
     const content = this.commentForm.get('content')?.value?.trim();
 
@@ -69,6 +73,8 @@ export class ViewPostComponent {
       }
     );
   }
+
+
 
   getCommentsByPost() {
     this.commentService.getAllCommentsByPost(this.postId).subscribe(
@@ -95,6 +101,7 @@ export class ViewPostComponent {
     );
   }
 
+
   getPostById() {
     this.postService.getPostById(this.postId).subscribe(
       (res) => {
@@ -106,6 +113,7 @@ export class ViewPostComponent {
       }
     );
   }
+
 
   likepost() {
     this.postService.likePost(this.postId).subscribe(
@@ -120,4 +128,6 @@ export class ViewPostComponent {
       }
     );
   }
+
+  
 }

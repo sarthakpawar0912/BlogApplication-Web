@@ -43,17 +43,22 @@ import { MatChipsModule } from '@angular/material/chips';  // ✅ Import MatChip
     HttpClientModule, 
     MatCardModule,
     MatSnackBarModule,
-    /* ✅ Ensure Angular Material Modules */
-    MatToolbarModule,
+     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
     MatListModule,
-    MatChipsModule  // ✅ Add MatChipsModule here
-  ],
+    MatChipsModule 
+   ],
+
+
   providers: [],
+
+
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

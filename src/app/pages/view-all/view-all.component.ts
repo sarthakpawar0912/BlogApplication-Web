@@ -12,12 +12,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ViewAllComponent implements OnInit {
   allPosts: any[] = [];
   commentForm: FormGroup;
-  selectedPostId: number | null = null;  
+  selectedPostId: number | null = null;
 
 
   constructor(
-    private postService: PostService, 
-    private snackBar: MatSnackBar, 
+    private postService: PostService,
+    private snackBar: MatSnackBar,
     private fb: FormBuilder
   ) {
     this.commentForm = this.fb.group({
@@ -74,5 +74,23 @@ export class ViewAllComponent implements OnInit {
       panelClass: ['snackbar-success']
     });
     this.commentForm.reset();
+  }
+
+  getTotalLikes(): number {
+    return this.allPosts.reduce((total, post) => total + (post.likeCount || 0), 0);
+  }
+
+  getTotalViews(): number {
+    return this.allPosts.reduce((total, post) => total + (post.viewCount || 0), 0);
+  }
+
+  getUniqueTags(): string[] {
+    const allTags: string[] = [];
+    this.allPosts.forEach(post => {
+      if (post.tags && Array.isArray(post.tags)) {
+        allTags.push(...post.tags);
+      }
+    });
+    return [...new Set(allTags)].slice(0, 6);
   }
 }

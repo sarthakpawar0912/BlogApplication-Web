@@ -1,111 +1,59 @@
-<div class="search-form">
-  <mat-form-field appearance="outline" class="search-input">
-    <mat-label>Enter Keyword to Search</mat-label>
-    <input matInput [(ngModel)]="name" (keydown.enter)="searchByName()" />
-    <button mat-button matSuffix color="primary" (click)="searchByName()">
-      <mat-icon>search</mat-icon>
-    </button>
-  </mat-form-field>
+<!-- Search Header -->
+<div class="search-header">
+  <h2><mat-icon>search</mat-icon> Search Results</h2>
+  <p *ngIf="searchQuery">Showing results for "<strong>{{ searchQuery }}</strong>"</p>
 </div>
 
-
-<!-- Empty State Message -->
-<div class="empty" *ngIf="result.length === 0">
-  <mat-icon class="icon">no_sim</mat-icon>
-  <br />
-  <span>Nothing to see here.</span>
+<!-- Loading State -->
+<div class="loading" *ngIf="isLoading">
+  <mat-spinner diameter="40"></mat-spinner>
+  <p>Searching...</p>
 </div>
 
+<!-- Empty State -->
+<div class="empty-state" *ngIf="!isLoading && result.length === 0">
+  <mat-icon>search_off</mat-icon>
+  <h3>No Results Found</h3>
+  <p>Try searching with different keywords</p>
+</div>
 
-<!-- Search Results Container -->
-<div class="card-container">
-  <ng-container *ngFor="let item of result; let i = index">
-   
-    <!-- Start a new row every 2 posts -->
-    <div class="post-row" *ngIf="i % 2 === 0">
-      <mat-card class="post-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{ result[i]?.name }}</mat-card-title>
-          <mat-card-subtitle>
-            Posted by: {{ result[i]?.postedBy }} | {{ result[i]?.date | date: "medium" }}
-          </mat-card-subtitle>
-        </mat-card-header>
+<!-- Search Results -->
+<div class="results-container" *ngIf="!isLoading && result.length > 0">
+  <p class="results-count">{{ result.length }} post(s) found</p>
 
+  <div class="results-grid">
+    <mat-card class="post-card" *ngFor="let post of result">
+      <div class="card-image">
+        <img [src]="post.img" [alt]="post.name">
+      </div>
 
-        <mat-grid-list cols="5" class="post-grid-content">
-          <!-- Image Container -->
-          <mat-grid-tile [colspan]="2" [rowspan]="1" class="image-container">
-            <img mat-card-image [src]="result[i]?.img" class="post-img" alt="Post Image" />
-          </mat-grid-tile>
+      <div class="card-body">
+        <div class="tags" *ngIf="post.tags?.length">
+          <span class="tag" *ngFor="let tag of post.tags.slice(0, 2)">{{ tag }}</span>
+        </div>
 
+        <h3 class="card-title" [routerLink]="['/view-post', post.id]">{{ post.name }}</h3>
 
-          <!-- Content Container -->
-          <mat-grid-tile [colspan]="3" [rowspan]="1" class="content-container">
-            <mat-card-content class="content-box">
-              {{ result[i]?.content.length > 600 ? result[i]?.content.substr(0, 600) + '...' : result[i]?.content }}
-            </mat-card-content>
-          </mat-grid-tile>
-        </mat-grid-list>
+        <p class="card-content">
+          {{ post.content.length > 100 ? post.content.substr(0, 100) + '...' : post.content }}
+        </p>
 
-        <hr class="divider-line" />
+        <div class="card-meta">
+          <div class="author">
+            <div class="avatar">{{ post.postedBy?.charAt(0)?.toUpperCase() }}</div>
+            <span>{{ post.postedBy }}</span>
+          </div>
+          <span class="date">{{ post.date | date: 'MMM d' }}</span>
+        </div>
+      </div>
 
-        <!-- Fixed Action Buttons -->
-        <mat-card-actions class="action-buttons">
-          <button mat-raised-button color="primary">
-            {{ result[i]?.likeCount }} <mat-icon>favorite</mat-icon>
-          </button>
-          <button mat-raised-button color="primary">
-            {{ result[i]?.viewCount }} <mat-icon>remove_red_eye</mat-icon>
-          </button>
-          <button mat-raised-button color="primary" [routerLink]="['/view-post', result[i]?.id]">
-            View Post
-          </button>
-        </mat-card-actions>
-      </mat-card>
-
-
-      <!-- Second Post in the Row (If Exists) -->
-      <mat-card class="post-card" *ngIf="result[i + 1]">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{ result[i + 1]?.name }}</mat-card-title>
-          <mat-card-subtitle>
-            Posted by: {{ result[i + 1]?.postedBy }} | {{ result[i + 1]?.date | date: "medium" }}
-          </mat-card-subtitle>
-        </mat-card-header>
-
-
-        <mat-grid-list cols="5" class="post-grid-content">
-          <!-- Image Container -->
-          <mat-grid-tile [colspan]="2" [rowspan]="1" class="image-container">
-            <img mat-card-image [src]="result[i + 1]?.img" class="post-img" alt="Post Image" />
-          </mat-grid-tile>
-
-
-          <!-- Content Container -->
-          <mat-grid-tile [colspan]="3" [rowspan]="1" class="content-container">
-            <mat-card-content class="content-box">
-              {{ result[i + 1]?.content.length > 600 ? result[i + 1]?.content.substr(0, 600) + '...' : result[i + 1]?.content }}
-            </mat-card-content>
-          </mat-grid-tile>
-        </mat-grid-list>
-        <hr class="divider-line" />
-
-
-        <!-- Fixed Action Buttons -->
-        <mat-card-actions class="action-buttons">
-          <button mat-raised-button color="primary">
-            {{ result[i + 1]?.likeCount }} <mat-icon>favorite</mat-icon>
-          </button>
-          <button mat-raised-button color="primary">
-            {{ result[i + 1]?.viewCount }} <mat-icon>remove_red_eye</mat-icon>
-          </button>
-          <button mat-raised-button color="primary" [routerLink]="['/view-post', result[i + 1]?.id]">
-            View Post
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </ng-container>
+      <div class="card-footer">
+        <div class="stats">
+          <span><mat-icon>favorite</mat-icon> {{ post.likeCount || 0 }}</span>
+          <span><mat-icon>visibility</mat-icon> {{ post.viewCount || 0 }}</span>
+        </div>
+        <button mat-stroked-button [routerLink]="['/view-post', post.id]">Read</button>
+      </div>
+    </mat-card>
+  </div>
 </div>

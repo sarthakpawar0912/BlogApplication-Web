@@ -1,113 +1,272 @@
-/* 🎨 Custom Toolbar */
+/* Custom Toolbar */
 .custom-toolbar {
-    background: linear-gradient(135deg, #34495e, #2c3e50);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    border-bottom: 3px solid #f39c12;
-    transition: all 0.3s ease-in-out;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-/* 📌 App Title */
+/* App Title */
 .app-title {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
 }
 
-/* ➖ Spacer to push elements to the right */
+.app-title:hover {
+  opacity: 0.9;
+}
+
+/* Search Wrapper */
+.search-wrapper {
+  position: relative;
+  margin-left: 20px;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  padding: 6px 15px;
+  transition: all 0.3s;
+}
+
+.search-box:focus-within {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.search-box mat-icon {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  margin-right: 8px;
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  width: 200px;
+}
+
+.search-box input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.clear-btn {
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 0 !important;
+  opacity: 0.7;
+}
+
+.clear-btn:hover {
+  opacity: 1;
+}
+
+/* Search Dropdown */
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 8px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 1000;
+  min-width: 320px;
+}
+
+.dropdown-loading,
+.dropdown-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  color: #888;
+}
+
+.dropdown-empty mat-icon {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+  color: #ccc;
+}
+
+/* Result Items */
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.result-item:hover {
+  background: #f5f5f5;
+}
+
+.result-item img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.result-title {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result-author {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.view-all-link {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background: #f8f8f8;
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.85rem;
+  border-top: 1px solid #eee;
+}
+
+.view-all-link:hover {
+  background: #667eea;
+  color: white;
+}
+
+/* Search Overlay */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+/* Spacer */
 .spacer {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
-/* 🔘 Icon Buttons */
-.icon-button {
-    transition: all 0.3s ease-in-out;
-    color: white;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 0 8px;
-    background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-/* 🖱️ Hover Effects for Icon Buttons */
-.icon-button:hover {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.15);
-}
-
-/* 🔼 Raised Buttons */
+/* Nav Buttons */
 button[mat-raised-button] {
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 10px 14px;
-    margin-left: 12px;
-    transition: all 0.3s ease-in-out;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-/* 🎭 Button Hover Effects */
+button[mat-raised-button] mat-icon {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
 button[mat-raised-button]:hover {
-    background-color: #f39c12 !important;
-    color: white !important;
-    transform: scale(1.05);
-    transition: all 0.3s ease-in-out;
+  background-color: #ffd700 !important;
+  color: #333 !important;
+  transform: scale(1.02);
 }
 
-/* ❤️ Favorite Icon */
-.favorite {
-    color: #e74c3c;
-    transition: color 0.3s ease-in-out;
+/* Icon Button */
+.icon-button {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  margin-left: 5px;
 }
 
-/* 🔗 Share Icon */
+.icon-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .share {
-    color: #f39c12;
-    transition: color 0.3s ease-in-out;
+  color: #ffd700;
 }
 
-/* 🎭 Subtle Hover Animation for Icons */
-.icon-button:hover .favorite,
-.icon-button:hover .share {
-    color: #ffffff;
+/* Responsive */
+@media (max-width: 900px) {
+  .search-box input {
+    width: 150px;
+  }
+
+  .search-dropdown {
+    min-width: 280px;
+  }
 }
 
+@media (max-width: 600px) {
+  .custom-toolbar {
+    flex-wrap: wrap;
+    padding: 10px 15px;
+    gap: 10px;
+  }
 
-/* 🔄 Responsive Design */
-@media (max-width: 768px) {
-    .custom-toolbar {
-        padding: 10px 16px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .app-title {
+    font-size: 18px;
+  }
 
+  .search-wrapper {
+    order: 3;
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
 
-    .app-title {
-        font-size: 18px;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-    }
+  .search-box {
+    width: 100%;
+  }
 
+  .search-box input {
+    width: 100%;
+  }
 
-    button[mat-raised-button] {
-        font-size: 14px;
-        padding: 8px 12px;
-        margin: 5px 0;
-    }
+  .search-dropdown {
+    width: 100%;
+    min-width: auto;
+  }
 
+  .spacer {
+    display: none;
+  }
 
-    .icon-button {
-        padding: 8px;
-        margin: 0 6px;
-    }
-
+  button[mat-raised-button] {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 }

@@ -1,35 +1,64 @@
 <mat-toolbar class="custom-toolbar">
-
   <!-- App Title -->
-  <span class="app-title">My App</span>
+  <span class="app-title" routerLink="/view-all">BlogSpace</span>
 
+  <!-- Search Bar -->
+  <div class="search-wrapper">
+    <div class="search-box">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Search posts..." [(ngModel)]="searchQuery"
+        (input)="onSearchInput()" (focus)="showDropdown = true">
+      <mat-icon class="clear-btn" *ngIf="searchQuery" (click)="clearSearch()">close</mat-icon>
+    </div>
 
-  <!-- Spacer to Push Items to Right -->
+    <!-- Search Dropdown -->
+    <div class="search-dropdown" *ngIf="showDropdown && searchQuery">
+      <div class="dropdown-loading" *ngIf="isSearching">
+        <mat-spinner diameter="20"></mat-spinner>
+        <span>Searching...</span>
+      </div>
+
+      <div class="dropdown-empty" *ngIf="!isSearching && searchResults.length === 0">
+        <mat-icon>search_off</mat-icon>
+        <span>No results found</span>
+      </div>
+
+      <div class="dropdown-results" *ngIf="!isSearching && searchResults.length > 0">
+        <a class="result-item" *ngFor="let post of searchResults.slice(0, 5)"
+          [routerLink]="['/view-post', post.id]" (click)="clearSearch()">
+          <img [src]="post.img" [alt]="post.name">
+          <div class="result-info">
+            <span class="result-title">{{ post.name }}</span>
+            <span class="result-author">by {{ post.postedBy }}</span>
+          </div>
+        </a>
+        <a class="view-all-link" *ngIf="searchResults.length > 5"
+          [routerLink]="['/search-by-name']" [queryParams]="{q: searchQuery}" (click)="clearSearch()">
+          View all {{ searchResults.length }} results
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacer -->
   <span class="spacer"></span>
 
-
-  <!-- Create New Post Button -->
-  <button mat-raised-button color="primary" (click)="navigateToCreatePost()">
-    Create New Post
+  <!-- Nav Buttons -->
+  <button mat-raised-button color="primary" routerLink="/create-post">
+    <mat-icon>add</mat-icon> New Post
   </button>
 
-
-  <button mat-raised-button color="primary" (click)="navigateToGetAllPosts()">
-    View All Posts
+  <button mat-raised-button color="primary" routerLink="/view-all">
+    <mat-icon>home</mat-icon> Home
   </button>
 
-
-  <button mat-raised-button color="primary" (click)="navigateToSearchByPost()">
-    Search
-  </button>
-
-
-  <!-- Share Icon (Share Website Link) -->
-  <button mat-icon-button class="icon-button" aria-label="Share" (click)="shareWebsite()">
+  <!-- Share Icon -->
+  <button mat-icon-button class="icon-button" (click)="shareWebsite()">
     <mat-icon class="share">share</mat-icon>
   </button>
 </mat-toolbar>
 
+<!-- Overlay to close dropdown -->
+<div class="search-overlay" *ngIf="showDropdown && searchQuery" (click)="showDropdown = false"></div>
 
-<!-- ✅ Router Outlet to Load Pages -->
 <router-outlet></router-outlet>

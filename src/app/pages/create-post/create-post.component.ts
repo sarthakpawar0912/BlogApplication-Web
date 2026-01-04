@@ -3,16 +3,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PostService } from '../../service/post.service';
+
 @Component({
   selector: 'app-create-post',
-  standalone:false,
+  standalone: false,
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
-  postForm!: FormGroup; 
-  tags: string[] = []; 
-
+  postForm!: FormGroup;
+  tags: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -20,7 +20,6 @@ export class CreatePostComponent implements OnInit {
     private snackBar: MatSnackBar,
     private postService: PostService
   ) {}
-
 
   ngOnInit() {
     this.postForm = this.fb.group({
@@ -31,15 +30,13 @@ export class CreatePostComponent implements OnInit {
     });
   }
 
-
   add(event: any) {
     const value = (event.value || '').trim();
-    if (value) {
+    if (value && !this.tags.includes(value)) {
       this.tags.push(value);
     }
-    event.chipInput!.clear(); 
+    event.chipInput!.clear();
   }
-
 
   remove(tag: string) {
     const index = this.tags.indexOf(tag);
@@ -48,17 +45,21 @@ export class CreatePostComponent implements OnInit {
     }
   }
 
-
-  createPost(){
-    const data = { ...this.postForm.value, tags: this.tags };
-
-    this.postService.createNewPost(data).subscribe(() => {
-      this.snackBar.open("Post Created Successfully!", "Ok", { duration: 3000 });
-      this.router.navigateByUrl("/");
-    }, () => {
-      this.snackBar.open("Something went wrong!", "Ok", { duration: 3000 });
-    });
+  getContentLength(): number {
+    return this.postForm.get('content')?.value?.length || 0;
   }
 
-  
+  createPost() {
+    const data = { ...this.postForm.value, tags: this.tags };
+
+    this.postService.createNewPost(data).subscribe({
+      next: () => {
+        this.snackBar.open('Post Created Successfully!', 'OK', { duration: 3000 });
+        this.router.navigateByUrl('/');
+      },
+      error: () => {
+        this.snackBar.open('Something went wrong!', 'OK', { duration: 3000 });
+      }
+    });
+  }
 }

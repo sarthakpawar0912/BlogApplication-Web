@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PostService } from './service/post.service';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,44 +12,64 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Blog_Application';
+  searchQuery: string = '';
+  searchResults: any[] = [];
+  isSearching: boolean = false;
+  showDropdown: boolean = false;
 
-  constructor(private router: Router) {}
+  private searchSubject = new Subject<string>();
 
-
-  navigateToCreatePost() {
-    this.router.navigate(['/create-post']);
+  constructor(private router: Router, private postService: PostService) {
+    // Debounce search to avoid too many API calls
+    this.searchSubject.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe(query => {
+      this.performSearch(query);
+    });
   }
 
-
-  navigateToGetAllPosts() {
-    this.router.navigate(['/view-all']);
+  onSearchInput() {
+    if (this.searchQuery.trim()) {
+      this.isSearching = true;
+      this.showDropdown = true;
+      this.searchSubject.next(this.searchQuery);
+    } else {
+      this.searchResults = [];
+      this.showDropdown = false;
+    }
   }
 
-
-  navigateToSearchByPost() {
-    this.router.navigate(['/search-by-name']);
+  performSearch(query: string) {
+    this.postService.searchByName(query).subscribe({
+      next: (res) => {
+        this.searchResults = res;
+        this.isSearching = false;
+      },
+      error: () => {
+        this.searchResults = [];
+        this.isSearching = false;
+      }
+    });
   }
 
-
-  showMostLikedPosts() {
-    this.router.navigate(['/most-liked-posts']);
+  clearSearch() {
+    this.searchQuery = '';
+    this.searchResults = [];
+    this.showDropdown = false;
   }
-  
 
   shareWebsite() {
-    const websiteUrl = window.location.href; // Gets the current page URL
+    const websiteUrl = window.location.href;
     if (navigator.share) {
-      // Native Web Share API
       navigator.share({
-        title: 'Check out this website!',
+        title: 'Check out BlogSpace!',
         url: websiteUrl
       }).then(() => console.log('Shared successfully'))
         .catch((error) => console.error('Error sharing:', error));
     } else {
-      // Fallback: Copy link to clipboard
       navigator.clipboard.writeText(websiteUrl);
-      alert('Link copied to clipboard! Share it with others.');
+      alert('Link copied to clipboard!');
     }
   }
-  
 }

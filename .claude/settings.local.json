@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./mvnw.cmd:*)",
+      "Bash(mvn spring-boot:run:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(cmd.exe /c \"netstat -ano | findstr :8080\")",
+      "Bash(cmd.exe /c \"netstat -ano | findstr :8081\")",
+      "Bash(cmd.exe /c \"netstat -ano | findstr :8082\")",
+      "Bash(git add:*)"
+    ]
+  }
+}

@@ -6,14 +6,11 @@ import { ViewPostComponent } from './pages/view-post/view-post.component';
 import { SearchByNameComponent } from './pages/search-by-name/search-by-name.component';
 
 const routes: Routes = [
-
-  { path: 'create-post', component: CreatePostComponent }, 
- 
-  { path: 'view-all', component: ViewAllComponent }, 
-  
-  { path: 'search-by-name', component: SearchByNameComponent}, 
-  
-  { path: 'view-post/:id', component: ViewPostComponent }, 
+  { path: '', redirectTo: 'view-all', pathMatch: 'full' },
+  { path: 'create-post', component: CreatePostComponent },
+  { path: 'view-all', component: ViewAllComponent },
+  { path: 'search-by-name', component: SearchByNameComponent},
+  { path: 'view-post/:id', component: ViewPostComponent },
 ];
 
 @NgModule({

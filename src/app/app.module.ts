@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-/* ✅ Import Angular Material Modules */
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,8 +21,9 @@ import { ViewAllComponent } from './pages/view-all/view-all.component';
 import { ViewPostComponent } from './pages/view-post/view-post.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
-import { SearchByNameComponent } from './pages/search-by-name/search-by-name.component'; 
-import { MatChipsModule } from '@angular/material/chips';  // ✅ Import MatChipsModule
+import { SearchByNameComponent } from './pages/search-by-name/search-by-name.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -40,18 +41,18 @@ import { MatChipsModule } from '@angular/material/chips';  // ✅ Import MatChip
     FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    HttpClientModule, 
+    HttpClientModule,
     MatCardModule,
     MatSnackBarModule,
-     MatToolbarModule,
+    MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
     MatListModule,
-    MatChipsModule 
-   ],
+    MatChipsModule,
+    MatProgressSpinnerModule],
 
 
   providers: [],
